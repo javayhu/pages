@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javayhu test html</title>
+</head>
+<body style="padding-top:20px;padding-left:20px;">
+
+<p>
+    <div>测试流程</div>
+    <ul>
+        <li>打开开关，在输入框中输入任意内容</li>
+        <li>点击 复制内容到剪切板 按钮，验证输入的内容成功保存到剪切板中</li>
+        <li>关闭开关，在输入框中输入任意内容</li>
+        <li>点击 复制内容到剪切板 按钮，验证输入的内容并没有保存到剪切板中</li>
+        <li>无论开关打开还是关闭，粘贴剪切板的内容都是失败</li>
+    </ul>
+</p>
+
+<input id="input" type="text"/> <br/>
+<button id="copy">复制内容到剪切板(document.execCommand('copy'))</button> <br/>
+<div id="copy_result"></div>
+
+<div style="height:50px;"></div>
+
+<input id="output" type="text"/> <br/>
+<button id="paste">粘贴剪切板的内容(document.execCommand('paste'))</button> <br/>
+<div id="paste_result"></div>
+
+<script>
+    // javayhu 复制是成功的，但是粘贴是失败的，暂不知为何
+	const copyButton = document.querySelector('#copy');
+	const copyText = document.querySelector('#input');
+	const copyResult = document.querySelector('#copy_result');
+	copyButton.addEventListener('click', function() {
+        copyText.select();
+        var result = document.execCommand("Copy");
+		copyResult.innerText = "copy result:" + result;
+	});
+
+	const pasteButton = document.querySelector('#paste');
+	const pasteText = document.querySelector('#output');
+	const pasteResult = document.querySelector('#paste_result');
+	pasteButton.addEventListener('click', function() {
+		pasteText.focus();
+		var result = document.execCommand("Paste");
+		pasteResult.innerText = "paste result:" + result;
+	});
+</script>
+</body>
+</html>
