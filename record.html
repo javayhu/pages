@@ -20,8 +20,9 @@
 				video.srcObject = stream;
                 video.play();
 				document.getElementById('result').value = stream;
-                },function(){alert("操作失败，权限不够！");});
-                
+                },function(){
+                    //alert("操作失败，权限不够！");
+                });                
             }
 		}, false);
 	</script>
